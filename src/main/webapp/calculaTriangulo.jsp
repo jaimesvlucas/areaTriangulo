@@ -12,15 +12,18 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%@page import="clases.Triangulo"%>
+        <%--@page import="clases.Triangulo"--%>
+        <jsp:useBean id="miTriangulo" class="clases.Triangulo"/>
         <%
-        Triangulo t = new Triangulo();
+        //Triangulo t = new Triangulo();
         float base = Float.parseFloat(request.getParameter("base"));
         float altura = Float.parseFloat(request.getParameter("altura"));
-        t.setBase(base);
-        t.setAltura(altura);
+        //t.setBase(base);
+        //t.setAltura(altura);
         %>
-        <h3>El área del triángulo es <%= t.getArea() %></h3>
+        <jsp:setProperty name="miTriangulo" property="base" value="<%=base%>"/>
+        <jsp:setProperty name="miTriangulo" property="altura" value="<%=altura%>"/>
+        <h3>El área del triángulo es <jsp:getProperty name='miTriangulo' property="area" /></h3> 
         <a href='index.jsp'>Volver a inicio</a>
     </body>
 </html>
